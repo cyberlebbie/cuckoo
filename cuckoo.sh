@@ -1,15 +1,20 @@
 #!/bin/bash
 
+########################################################################
+## This codes automates the installation of cuckoo sandbox.           ##
+## It was writing by Mohamed Lebbie.                                  ##
+########################################################################
+
+#Updating the system
 sudo apt-get update && sudo apt-get upgrade -y
 
-
+#Installing Virtual Environment
 sudo apt-get install virtualenv -y
-virtualenv -p /usr/bin/python2.7 cuckoo3
-#sudo chmod -R 777 /home/kali/Desktop/cuckoo3
-source cuckoo3/bin/activate
-
-
+virtualenv -p /usr/bin/python2.7 cuckoo
+source cuckoo/bin/activate
 sudo apt-get update
+
+#Installing Cuckoo Dependencies
 sudo apt-get install python2 python-dev libffi-dev libssl-dev -y
 sudo apt-get install libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk -y
 
@@ -31,7 +36,7 @@ pip install pip setuptools
 pip install cuckoo
 source cuckoo/bin/activate
 
-#sudo sed -i 's/[mongodb] enabled = no/[mongodb] enable = yes/' .cuckoo/conf/reporting.conf
+#Basic Configuration of cuckoo
 if [ -d ".cuckoo/config/" ]; then
 	sudo sed -i 's/ignore_vulnerabilities = no/ignore_vulnerablities = yes/' .cuckoo/conf/cuckoo.conf
 	sudo sed -i 's/machinery = virtualbox/machinery = physical/' .cuckoo/conf/cuckoo.conf
@@ -39,4 +44,4 @@ if [ -d ".cuckoo/config/" ]; then
 	sudo sed -i 's/[mongodb] enabled = no/[mongodb] enabled = yes/' .cuckoo/conf/reporting.conf
 fi
 
-#sudo systemctl start mongod
+
