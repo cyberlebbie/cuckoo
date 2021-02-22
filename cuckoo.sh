@@ -27,7 +27,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org -y
 sudo systemctl start mongod
 
-#Setting up the Server 
+#Setting up the Server
 sudo apt-get install postgresql libpq-dev -y
 sudo pip install XenAPI
 pip install pip setuptools
@@ -39,9 +39,10 @@ source cuckoo/bin/activate
 #Basic Configuration of cuckoo
 if [ -d ".cuckoo/config/" ]; then
 	sudo sed -i 's/ignore_vulnerabilities = no/ignore_vulnerablities = yes/' .cuckoo/conf/cuckoo.conf
+#Set the machinery to physical which will allow cuckoo to connect to an actual physical system
 	sudo sed -i 's/machinery = virtualbox/machinery = physical/' .cuckoo/conf/cuckoo.conf
+#Increase the wait time for response from the guest PC
 	sudo sed -i 's/vm_state = 60/vm_state = 600/' .cuckoo/conf/cuckoo.conf
+#Enable mongodb to allow access to the cuckoo sandbox via web interface
 	sudo sed -i 's/[mongodb] enabled = no/[mongodb] enabled = yes/' .cuckoo/conf/reporting.conf
 fi
-
-
