@@ -15,13 +15,13 @@ source cuckoo/bin/activate
 sudo apt-get update
 
 #Installing Cuckoo Dependencies
-sudo apt-get install python2 python-dev libffi-dev libssl-dev -y
+sudo apt-get install python2 python2-minimal libffi-dev libssl-dev -y #Updated (1st Aug 2023)
 sudo apt-get install libtiff5-dev libjpeg62-turbo-dev zlib1g-dev libfreetype6-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk -y
 
 #Setting up MongoDB
 sudo apt-get install gnupg -y
-wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
+echo "deb http://repo.mongodb.org/apt/debian/dists/buster/mongodb-org/7.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 sudo apt-get update
 
 sudo apt-get install -y mongodb-org -y
